@@ -1,0 +1,11 @@
+{
+    "name": "@ripreact/hsl",
+    "version": "1.0.0",
+    "description": "Minimal HSLᵤᵥ implementation.",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "repository": "https://github.com/ripreact/hsl",
+    "author": "Marina Miyaoka <miyaokamarina@gmail.com> (https://twitter.com/miyaokamarina)",
+    "license": "MIT",
+    "devDependencies": {}
+}
