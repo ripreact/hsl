@@ -43,7 +43,7 @@ module.exports.hsl = (h, s, l, a = 1) => {
     /** @type {number} */
     const sub2 = sub1 > 0.0088564516 ? sub1 : l / 903.2962962;
 
-    const _ = M.map(
+    const _ = M.forEach(
         /**
          * @param {number} a
          * @param {number} b
