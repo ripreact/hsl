@@ -1,11 +1,13 @@
 {
     "compilerOptions": {
-        "target": "es3",
-        "module": "commonjs",
+        "target": "esnext",
+        "module": "esnext",
         "strict": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true
+        "noUnusedParameters": true,
+        "declaration": true,
+        "emitDeclarationOnly": true
     }
 }

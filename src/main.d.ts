@@ -1,6 +1,6 @@
 declare module '@ripreact/hsl' {
     /**
-     * Minimal HSLᵤᵥ implementation. Returns `rgba(r, g, b, a)` string.
+     * Minimal and fast HSLᵤᵥ implementation. Returns `#rrggbbaa` string.
      *
      * @param h HSLᵤᵥ hue.
      * @param s HSLᵤᵥ saturation.

@@ -1,11 +1,17 @@
 {
     "name": "@ripreact/hsl",
-    "version": "1.0.1",
-    "description": "Minimal HSLᵤᵥ implementation.",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "version": "1.1.0",
+    "description": "Minimal and fast HSLᵤᵥ implementation.",
     "repository": "https://github.com/ripreact/hsl",
     "author": "Marina Miyaoka <miyaokamarina@gmail.com> (https://twitter.com/miyaokamarina)",
     "license": "MIT",
-    "devDependencies": {}
+    "main": "./src/main.js",
+    "types": "./src/index.d.ts",
+    "module": "./src/bundlers.mjs",
+    "exports": "./src/node.mjs",
+    "devDependencies": {
+        "hsluv": "^0.0.3",
+        "prettier": "^1.19.1",
+        "typescript": "^3.7.2"
+    }
 }

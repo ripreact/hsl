@@ -1,7 +1,7 @@
 # @ripreact/hsl
 
-> Minimal (≈560 bytes minigzip) [HSLᵤᵥ](http://hsluv.org) implementation with
-> TypeScript support.
+> Minimal (≈650 bytes minigzip) and fast (≈13% faster than original)
+> [HSLᵤᵥ](http://hsluv.org) implementation with TypeScript support.
 
 ```shell script
 yarn add @ripreact/hsl
@@ -10,10 +10,9 @@ yarn add @ripreact/hsl
 ## Usage
 
 ```javascript
-// const { hsl } = require('@ripreact/hsl');
 import { hsl } from '@ripreact/hsl';
 
-console.log(hsl(0, 100, 50, 0.5)); // → `rgba(234,0,100,0.5)`
+console.log(hsl(0, 100, 50, 0.5)); // → `'#ea006480'`
 ```
 
 ## Environment
