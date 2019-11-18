@@ -1,12 +1,12 @@
 const { performance } = require('perf_hooks');
 const { hsluvToHex } = require('hsluv');
-const { hsl } = require('..');
+const { hsl } = require('@ripreact/hsl/cjs');
 
 const { min, max, round, random } = Math;
 
 const normalize = n => round(max(0, min(n, 1)) * 255);
 
-const old = (h, s, l, a = 1) => {
+const old = (h, s, l) => {
     let j;
     let bottom;
     let length;
@@ -54,36 +54,35 @@ const old = (h, s, l, a = 1) => {
             Math.max(0, min(fromLinear(a * x + b * y + (c * (9 * y - 15 * varV * y - varV * x)) / (3 * varV)), 1)) *
                 255,
         );
-    })},${a})`;
+    })})`;
 };
 
-// prettier-ignore
-const FunA = (h, s, l, a) => (hsluvToHex([h, s, l]) + normalize(a).toString(16).padStart(2, 0));
-const FunB = (h, s, l, a) => hsl(h, s, l, a);
-const FunC = (h, s, l, a) => old(h, s, l, a);
+const FunA = (h, s, l) => hsluvToHex([h, s, l]);
+const FunB = (h, s, l) => hsl(h, s, l);
+const FunC = (h, s, l) => old(h, s, l);
 
 let sum = [];
 
 for (let i = 0; i < 10000; i++) {
-    sum.push(FunB(random(), random(), random(), random()));
-    sum.push(FunA(random(), random(), random(), random()));
-    sum.push(FunC(random(), random(), random(), random()));
+    sum.push(FunB(random(), random(), random()));
+    sum.push(FunA(random(), random(), random()));
+    sum.push(FunC(random(), random(), random()));
 }
 sum = [];
 
 const r = 1000000;
 
 a = performance.now();
-for (let i = 0; i < r; i++) sum.push(FunA(random(), random(), random(), random()));
+for (let i = 0; i < r; i++) sum.push(FunA(random(), random(), random()));
 console.log('FunA : %s rps, side effect = %s.', (r / (performance.now() - a)) * 1000, sum.length);
 sum = [];
 
 a = performance.now();
-for (let i = 0; i < r; i++) sum.push(FunB(random(), random(), random(), random()));
+for (let i = 0; i < r; i++) sum.push(FunB(random(), random(), random()));
 console.log('FunB : %s rps, side effect = %s.', (r / (performance.now() - a)) * 1000, sum.length);
 sum = [];
 
 a = performance.now();
-for (let i = 0; i < r; i++) sum.push(FunC(random(), random(), random(), random()));
+for (let i = 0; i < r; i++) sum.push(FunC(random(), random(), random()));
 console.log('FunC : %s rps, side effect = %s.', (r / (performance.now() - a)) * 1000, sum.length);
 sum = [];

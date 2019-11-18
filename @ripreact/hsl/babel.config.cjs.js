@@ -1,0 +1,16 @@
+module.exports = {
+    presets: [
+        [
+            '@babel/preset-env',
+            {
+                modules: 'commonjs',
+                shippedProposals: true,
+                useBuiltIns: 'usage',
+                corejs: 3,
+                exclude: ['es.object.to-string', 'es.regexp.to-string'],
+            },
+        ],
+        '@babel/preset-typescript',
+    ],
+    plugins: ['@babel/plugin-proposal-nullish-coalescing-operator'],
+};

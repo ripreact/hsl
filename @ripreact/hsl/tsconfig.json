@@ -8,6 +8,9 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "declaration": true,
-        "emitDeclarationOnly": true
-    }
+        "emitDeclarationOnly": true,
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "exclude": ["dist"]
 }

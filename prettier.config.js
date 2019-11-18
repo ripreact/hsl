@@ -7,15 +7,15 @@ module.exports = {
     semi: true,
     singleQuote: true,
     tabWidth: 4,
-    trailingComma: 'none',
+    trailingComma: 'all',
     arrowParens: 'avoid',
     proseWrap: 'always',
     overrides: [
         {
             files: ['*.md'],
             options: {
-                printWidth: 80
-            }
-        }
-    ]
+                printWidth: 80,
+            },
+        },
+    ],
 };
