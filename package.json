@@ -1,6 +1,6 @@
 {
     "name": "@ripreact/hsl",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Minimal and fast HSLᵤᵥ implementation.",
     "repository": "https://github.com/ripreact/hsl",
     "author": "Marina Miyaoka <miyaokamarina@gmail.com> (https://twitter.com/miyaokamarina)",
