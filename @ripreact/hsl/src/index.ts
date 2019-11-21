@@ -33,52 +33,65 @@ const hex = (x: number, w: number) => {
  * @param l HSLᵤᵥ lightness (0..100).
  */
 export const hsl = (h: number, s: number, l: number) => {
-    let p = l + 16;
-    let i = p ** 3 / 1560896; // ← `sub1`
-    let j: number;
-    let x: number;
-    let y: number;
-    let z: number;
-    let m = i > 0.0088564516 ? i : l / 903.2962962; // ← `sub2`
-    let n: number;
-    let o = Infinity; // ← `c`
+    h = (h * Math.PI) / 180;
 
-    h = (h * Math.PI) / 180; // ← `hrad`
+    let hsin = Math.sin(h);
+    let hcos = Math.cos(h);
+
+    const t1 = l + 16;
+    const t2 = 13 * l;
+    const t3 = t1 / 116;
+
+    const sub1 = (t1 * t1 * t1) / 1560896;
+    const sub2 = sub1 > 0.0088564516 ? sub1 : l / 903.2962962;
+
+    let i: number;
+    let j: number;
+    let cmax = Infinity;
+
+    let m1: number;
+    let m2: number;
+    let m3: number;
+
+    let bottom: number;
+    let length: number;
 
     for (i = 0; i < 9; ) {
-        x = M[i++];
-        y = M[i++];
-        z = M[i++];
+        m1 = M[i++];
+        m2 = M[i++];
+        m3 = M[i++];
 
         for (j = 0; j < 2; j++) {
-            n = (632260 * z - q * y) * m + q * j; // ← `bottom`
+            bottom = (632260 * m3 - q * m2) * sub2 + q * j;
 
-            // `length` ↓
-            n =
-                ((838422 * z + r * y + 731718 * x) * l * m - r * j * l) /
-                n /
-                (Math.sin(h) - (((284517 * x - 94839 * z) * m) / n) * Math.cos(h));
+            length =
+                ((838422 * m3 + r * m2 + 731718 * m1) * l * sub2 - r * j * l) /
+                bottom /
+                (hsin - (((284517 * m1 - 94839 * m3) * sub2) / bottom) * hcos);
 
-            o = n >= 0 ? Math.min(o, (n / 100) * s) : o; // ← `c`
+            if (length >= 0) cmax = Math.min(cmax, length);
         }
     }
 
-    i = l * 13;
-    m = (Math.cos(h) * o) / i + 0.19783000664283; // ← `varU`
-    n = (Math.sin(h) * o) / i + 0.46831999493879; // ← `varV`
+    const c = (cmax / 100) * s;
 
-    l = l <= 8 ? l / 903.2962962 : (p / 116) ** 3; // ← `y`
-    m = -(9 * l * m) / ((m - 4) * n - m * n); //      ← `x`
-    n = (9 * l - 15 * n * l - n * m) / (3 * n);
-    o = 0; //                                         ← `rgb`
+    const varU = (hcos * c) / t2 + 0.19783000664283;
+    const varV = (hsin * c) / t2 + 0.46831999493879;
 
-    for (i = 0, j = 16; i < 9; j -= 8) {
-        p = M[i++] * m + M[i++] * l + M[i++] * n;
+    const y = l <= 8 ? l / 903.2962962 : t3 * t3 * t3;
+    const x = (-9 * y * varU) / ((varU - 4) * varV - varU * varV);
+    const z = (9 * y - 15 * varV * y - varV * x) / (3 * varV);
 
-        o += (normalize(p <= 0.0031308 ? 12.92 * p : 1.055 * p ** 0.416666666666666685 - 0.055) << j) >>> 0;
-    }
+    let dot = M[0] * x + M[1] * y + M[2] * z;
+    let rgb = normalize(dot <= 0.0031308 ? 12.92 * dot : 1.055 * dot ** 0.416666666666666685 - 0.055) << 16;
 
-    return '#' + hex(o, 6);
+    dot = M[3] * x + M[4] * y + M[5] * z;
+    rgb |= normalize(dot <= 0.0031308 ? 12.92 * dot : 1.055 * dot ** 0.416666666666666685 - 0.055) << 8;
+
+    dot = M[6] * x + M[7] * y + M[8] * z;
+    rgb |= normalize(dot <= 0.0031308 ? 12.92 * dot : 1.055 * dot ** 0.416666666666666685 - 0.055);
+
+    return '#' + hex(rgb, 6);
 };
 
 /**
