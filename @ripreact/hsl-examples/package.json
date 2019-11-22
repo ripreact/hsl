@@ -1,13 +1,13 @@
 {
     "name": "@ripreact/hsl-examples",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "HSLᵤᵥ examples.",
     "repository": "ripreact/hsl",
     "author": "Marina Miyaoka <miyaokamarina@gmail.com> (https://twitter.com/miyaokamarina)",
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "@ripreact/hsl": "^1.2.0",
+        "@ripreact/hsl": "^1.2.1",
         "hsluv": "^0.0.3"
     }
 }
