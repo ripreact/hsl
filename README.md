@@ -30,6 +30,16 @@ console.log(hsla(0, 100, 50, 0.5));
 > Also, you may specify `@ripreact/hsl/mjs` explicitly to import tha same module
 > as using default entry point.
 
+## NAPI addon
+
+```javascript
+// Or `@ripreact/hsl/native/cjs` for CommonJS ↓
+import { hsl, hsla } from '@ripreact/hsl/native/mjs';
+
+console.log(hsl(0, 100, 50));
+console.log(hsla(0, 100, 50, 0.5));
+```
+
 ## License
 
 MIT
