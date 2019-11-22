@@ -27,7 +27,7 @@ console.log(hsla(0, 100, 50, 0.5));
 
 > **NB:** By default `@ripreact/hsl` exports `*.mjs` module. If for some reasons
 > you need ES module with `*.js` extension, use `@ripreact/hsl/esm` entry point.
-> Also, you may specify `@ripreact/hsl/mjs` explicitly to import tha same module
+> Also, you may specify `@ripreact/hsl/mjs` explicitly to import the same module
 > as using default entry point.
 
 ## NAPI addon
