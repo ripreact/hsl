@@ -8,7 +8,6 @@
         "@ripreact/*"
     ],
     "devDependencies": {
-        "core-js": "^3.4.1",
         "lerna": "^3.18.4",
         "prettier": "^1.19.1"
     }

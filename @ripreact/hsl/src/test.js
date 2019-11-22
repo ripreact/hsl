@@ -1,11 +1,20 @@
 const snapshot = require('./test.json');
-const { hsl } = require('../dist/index.cjs.js');
+const js = require('../dist/index.cjs.js');
+const c = require('../native/cjs.js');
 
 for (const { input, expected } of snapshot) {
-    const got = hsl(...input);
+    const got = js.hsl(...input);
     if (got !== expected) {
         console.log({ input, expected, got });
-        throw new Error('Ti pidor.');
+        throw new Error('Test failed: JS.');
+    }
+}
+
+for (const { input, expected } of snapshot) {
+    const got = c.hsl(...input);
+    if (got !== expected) {
+        console.log({ input, expected, got });
+        throw new Error('Test failed: C.');
     }
 }
 

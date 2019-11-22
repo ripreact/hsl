@@ -13,7 +13,9 @@
         "./cjs": "./dist/index.cjs.js",
         "./esm": "./dist/index.esm.js",
         "./module": "./dist/index.esm.js",
-        "./mjs": "./dist/index.mjs.mjs"
+        "./mjs": "./dist/index.mjs.mjs",
+        "./native/cjs": "./native/cjs.js",
+        "./native/mjs": "./native/mjs.mjs"
     },
     "scripts": {
         "build:dts": "tsc",
@@ -22,14 +24,19 @@
         "build:mjs": "babel ./src/index.ts --config-file ./babel.config.esm.js -so ./dist/index.mjs.mjs",
         "build": "yarn build:dts && yarn build:cjs && yarn build:esm && yarn build:mjs",
         "test": "yarn build && node ./src/test.js",
-        "prepublish": "yarn test"
+        "prepublish": "yarn test",
+        "install": "cmake-js compile"
     },
     "devDependencies": {
         "@babel/cli": "^7.7.0",
         "@babel/core": "^7.7.2",
         "@babel/preset-env": "^7.7.1",
         "@babel/preset-typescript": "^7.7.2",
+        "cmake-js": "^6.0.0",
         "typescript": "^3.7.2",
         "wabt": "^1.0.12"
+    },
+    "dependencies": {
+        "bindings": "^1.5.0"
     }
 }
